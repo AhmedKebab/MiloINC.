@@ -228,13 +228,8 @@ body {
 
 .analog-horror::before {
   z-index: 0;
-  background:
-    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.36) 0 1px, transparent 1px 4px),
-    linear-gradient(90deg, rgba(136, 8, 24, 0.14), transparent 18% 82%, rgba(42, 124, 132, 0.12)),
-    radial-gradient(ellipse at center, transparent 31%, rgba(0, 0, 0, 0.56) 100%);
-  opacity: 0.76;
-  mix-blend-mode: multiply;
-  animation: analog-frame-wobble 7s steps(1, end) infinite;
+  background: radial-gradient(ellipse at center, transparent 38%, rgba(0, 0, 0, 0.34) 100%);
+  opacity: 0.72;
 }
 
 .analog-noise {
@@ -243,9 +238,7 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.24;
-  filter: contrast(170%) brightness(78%);
-  mix-blend-mode: screen;
+  display: none;
   pointer-events: none;
 }
 
@@ -258,32 +251,18 @@ body {
   object-fit: cover;
   object-position: center center;
   opacity: 0;
-  filter: sepia(0.7) hue-rotate(304deg) saturate(2.4) contrast(1.35);
-  mix-blend-mode: screen;
+  display: none;
   pointer-events: none;
 }
 
 .showcase.is-menu-active .analog-ghost[src] {
-  opacity: 0.12;
-  animation: analog-ghost-tear 4.2s steps(1, end) infinite;
+  opacity: 0;
 }
 
 .analog-horror::after {
   z-index: 3;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 43%,
-      rgba(0, 0, 0, 0.24) 46%,
-      rgba(222, 225, 214, 0.44) 48%,
-      rgba(133, 7, 24, 0.62) 49%,
-      rgba(0, 0, 0, 0.68) 52%,
-      rgba(0, 0, 0, 0.24) 54%,
-      transparent 58%
-    ),
-    repeating-linear-gradient(0deg, transparent 0 24px, rgba(235, 230, 215, 0.12) 25px, transparent 27px);
-  opacity: 0.27;
-  animation: analog-tape-track 6s linear infinite;
+  background: radial-gradient(ellipse at 60% 48%, rgba(255, 255, 255, 0.035), transparent 58%);
+  opacity: 0.7;
 }
 
 .analog-label {
@@ -311,7 +290,7 @@ body {
   border-radius: 50%;
   background: #d52631;
   box-shadow: 0 0 7px rgba(213, 38, 49, 0.8);
-  animation: analog-rec-blink 1.8s steps(1, end) infinite;
+  animation: analog-rec-blink 1800ms ease-in-out infinite;
 }
 
 .analog-timestamp {
@@ -326,109 +305,13 @@ body {
 
 .showcase.is-menu-active #game-title {
   color: #d5d1c5;
-  text-shadow:
-    -2px 0 rgba(145, 15, 26, 0.56),
-    2px 0 rgba(46, 114, 122, 0.42),
-    0 3px 4px rgba(0, 0, 0, 0.96);
-  animation: analog-title-jitter 4.5s steps(1, end) infinite;
-}
-
-@keyframes analog-frame-wobble {
-  0%,
-  76%,
-  100% {
-    transform: translateX(0);
-  }
-
-  77% {
-    transform: translateX(-5px) skewY(-0.12deg);
-  }
-
-  80% {
-    transform: translateX(4px) skewY(0.08deg);
-  }
-
-  83% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes analog-ghost-tear {
-  0%,
-  74%,
-  100% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    transform: translateX(3px);
-  }
-
-  76% {
-    clip-path: polygon(0 44%, 100% 42%, 100% 58%, 0 60%);
-    opacity: 0.34;
-    transform: translateX(-14px) translateY(3px);
-  }
-
-  79% {
-    clip-path: polygon(0 47%, 100% 45%, 100% 61%, 0 63%);
-    opacity: 0.26;
-    transform: translateX(11px) translateY(-2px);
-  }
-
-  82% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    opacity: 0.12;
-    transform: translateX(3px);
-  }
-}
-
-@keyframes analog-tape-track {
-  from {
-    transform: translateY(-100%);
-  }
-
-  to {
-    transform: translateY(100%);
-  }
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.92);
 }
 
 @keyframes analog-rec-blink {
   0%,
-  48%,
-  100% {
-    opacity: 1;
-  }
-
-  49%,
-  80% {
-    opacity: 0.28;
-  }
-}
-
-@keyframes analog-title-jitter {
-  0%,
-  72%,
-  100% {
-    clip-path: inset(0);
-    transform: translateX(0);
-  }
-
-  74% {
-    clip-path: inset(34% 0 38%);
-    text-shadow:
-      -5px 0 rgba(145, 15, 26, 0.82),
-      5px 0 rgba(46, 114, 122, 0.68),
-      0 3px 4px rgba(0, 0, 0, 0.96);
-    transform: translateX(-4px) skewX(-2deg);
-  }
-
-  77% {
-    clip-path: inset(46% 0 44%);
-    transform: translateX(6px) skewX(1deg);
-  }
-
-  81% {
-    clip-path: inset(0);
-    transform: translateX(-1px);
-  }
+  100% { opacity: 0.58; }
+  50% { opacity: 1; }
 }
 
 .examination-frame {
@@ -832,6 +715,12 @@ body {
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link) {
   position: relative;
   isolation: isolate;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    box-shadow 180ms ease-out,
+    color 180ms ease-out;
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link)::after {
@@ -839,96 +728,30 @@ body {
   inset: 0;
   z-index: 1;
   border-radius: inherit;
-  background:
-    repeating-linear-gradient(0deg, rgba(221, 225, 228, 0.22) 0 1px, transparent 1px 3px),
-    linear-gradient(112deg, transparent 26%, rgba(221, 225, 228, 0.16) 39%, rgba(221, 225, 228, 0.55) 44%, var(--frame-warning) 45%, rgba(221, 225, 228, 0.28) 47%, transparent 58%);
-  border: 1px solid rgba(221, 225, 228, 0.48);
-  box-shadow: inset 0 1px rgba(221, 225, 228, 0.3), inset 0 -1px rgba(0, 0, 0, 0.72);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 62%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   content: "";
-  opacity: 0.12;
+  opacity: 0;
   pointer-events: none;
-  mix-blend-mode: normal;
+  transition: opacity 180ms ease-out;
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):hover::after,
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):focus-visible::after {
-  animation: metal-grind-sweep 240ms ease-out both;
-}
-
-.showcase[data-quality="low"] :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link)::after {
-  background: linear-gradient(112deg, transparent 40%, rgba(221, 225, 228, 0.22) 48%, var(--frame-warning) 49%, transparent 52%);
+  opacity: 0.72;
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):hover,
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):focus-visible {
-  animation: metal-impact 220ms ease-out both;
-}
-
-.showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):active {
-  animation: metal-press 110ms ease-out both;
+  transform: translateY(-1px);
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):active::after {
-  animation: metal-crush 110ms ease-out both;
+  opacity: 1;
 }
 
-@keyframes metal-grind-sweep {
-  0% {
-    transform: translate3d(-10%, 0, 0);
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(10%, 0, 0);
-    opacity: 0;
-  }
-}
-
-@keyframes metal-impact {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-
-  55% {
-    transform: translateY(-2px) scale(1.008);
-  }
-
-  to {
-    transform: translateY(-1px) scale(1.003);
-  }
-}
-
-@keyframes metal-press {
-  from { transform: translateY(-1px) scale(1); }
-
-  45% {
-    transform: translateY(2px) scale(0.99);
-  }
-
-  to {
-    transform: translateY(1px) scale(0.995);
-  }
-}
-
-@keyframes metal-crush {
-  0% {
-    transform: scaleY(0.12);
-    opacity: 0;
-  }
-
-  32% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-
-  to {
-    transform: scaleY(0.96);
-    opacity: 0;
-  }
+.showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):active {
+  transform: translateY(1px) scale(0.99);
 }
 
 .category-screen {
@@ -947,13 +770,17 @@ body {
 }
 
 .category-screen.is-entering {
-  animation: steel-panel-lock 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: soft-dissolve-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes steel-panel-lock {
+.brand-panel.is-entering {
+  animation: soft-dissolve-in 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes soft-dissolve-in {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.99);
+    transform: translateY(7px) scale(0.995);
   }
 
   to {
@@ -1159,7 +986,7 @@ body {
   gap: 28px;
   color: #dce2eb;
   line-height: 1.65;
-  animation: steel-panel-lock 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: soft-dissolve-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .enemy-detail h2,
@@ -1435,101 +1262,27 @@ body {
 }
 
 .reconstruct-effect::before {
-  inset: 2%;
-  border: 1px solid rgba(221, 225, 228, 0.5);
-  background:
-    repeating-linear-gradient(0deg, rgba(221, 225, 228, 0.075) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(92deg, transparent 0 30px, rgba(0, 0, 0, 0.18) 31px 32px),
-    linear-gradient(145deg, rgba(90, 92, 88, 0.24), rgba(11, 16, 24, 0.38));
-  box-shadow:
-    inset 0 1px rgba(221, 225, 228, 0.28),
-    inset 0 -24px 48px rgba(0, 0, 0, 0.48),
-    0 0 0 1px rgba(0, 0, 0, 0.72);
-  clip-path: polygon(0 0, 38% 0, 40% 2%, 100% 0, 100% 100%, 62% 100%, 60% 98%, 0 100%);
+  background: radial-gradient(ellipse at center, rgba(12, 14, 18, 0.3), rgba(2, 3, 5, 0.86));
 }
 
 .reconstruct-effect::after {
-  inset: -18%;
-  background: linear-gradient(
-    108deg,
-    transparent 46%,
-    rgba(221, 225, 228, 0.05) 48%,
-    rgba(221, 225, 228, 0.65) 49%,
-    var(--frame-warning) 50%,
-    rgba(221, 225, 228, 0.22) 51%,
-    transparent 54%
-  );
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.045), transparent 58%);
 }
 
 .showcase.is-reconstructing .reconstruct-effect {
-  animation: steel-frame-seat 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: soft-dissolve-curtain 360ms ease-in-out both;
 }
 
-.showcase.is-reconstructing .reconstruct-effect::before {
-  animation: steel-plate-seat 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.showcase.is-reconstructing .reconstruct-effect::after {
-  animation: metal-grind-pass 520ms ease-out both;
-}
-
-@keyframes steel-frame-seat {
-  0% {
+@keyframes soft-dissolve-curtain {
+  from,
+  to {
     opacity: 0;
-    transform: scale(0.98);
-  }
-
-  34% {
-    opacity: 0.92;
-    transform: scale(1);
-  }
-
-  68% {
-    opacity: 0.76;
     transform: scale(1.01);
   }
 
-  100% {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes steel-plate-seat {
-  0% {
-    opacity: 0;
-    transform: scale(0.94) translateY(8px);
-  }
-
-  38% {
-    opacity: 0.82;
-    transform: scale(1) translateY(1px);
-  }
-
-  70% {
-    opacity: 0.64;
-    transform: scale(1) translateY(-2px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.01) translateY(0);
-  }
-}
-
-@keyframes metal-grind-pass {
-  0% {
-    opacity: 0;
-    transform: translateX(-72%) rotate(8deg);
-  }
-
-  24% {
-    opacity: 0.82;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(72%) rotate(8deg);
+  48% {
+    opacity: 0.88;
+    transform: scale(1);
   }
 }
 

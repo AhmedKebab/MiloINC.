@@ -567,8 +567,12 @@ reconstructEffect.addEventListener("animationend", (event) => {
   showScreen(screen);
 });
 
-categoryScreen.addEventListener("animationend", (event) => {
-  if (event.target === categoryScreen) categoryScreen.classList.remove("is-entering");
+[introScreen, categoryScreen, detailScreen].forEach((screen) => {
+  screen.addEventListener("animationend", (event) => {
+    if (event.target === screen && event.animationName === "soft-dissolve-in") {
+      screen.classList.remove("is-entering");
+    }
+  });
 });
 
 categoryScreen.addEventListener("click", (event) => {

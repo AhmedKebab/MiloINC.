@@ -3427,7 +3427,7 @@ settingsMenuSummary.addEventListener("click", (event) => {
 
   settingsMenuTransitionTimer = window.setTimeout(
     () => finishSettingsMenuTransition(true),
-    1000,
+    560,
   );
 });
 settingsControls.addEventListener("transitionend", (event) => {

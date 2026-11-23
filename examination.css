@@ -147,7 +147,7 @@ body {
   filter: brightness(0.78) contrast(1.08) saturate(0.86);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 3000ms ease-in-out;
+  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .background-image.is-visible {
@@ -212,7 +212,7 @@ body {
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 260ms ease;
+  transition: opacity 180ms ease-out;
 }
 
 .showcase.is-menu-active .analog-horror {
@@ -631,10 +631,10 @@ body {
   text-transform: uppercase;
   text-shadow: 0 1px 8px #000;
   transition:
-    border-color 180ms steps(2, end),
-    background-color 180ms steps(2, end),
-    color 180ms steps(2, end),
-    transform 100ms steps(2, end);
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    color 180ms ease-out,
+    transform 120ms ease-out;
 }
 
 .begin-button:hover,
@@ -715,11 +715,11 @@ body {
 }
 
 .settings-menu.is-opening .settings-gear {
-  animation: settings-gear-spin 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: settings-gear-spin 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .settings-menu.is-closing .settings-gear {
-  animation: settings-gear-spin-reverse 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: settings-gear-spin-reverse 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes settings-gear-spin {
@@ -728,13 +728,13 @@ body {
   }
 
   to {
-    transform: rotate(1080deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes settings-gear-spin-reverse {
   from {
-    transform: rotate(1080deg);
+    transform: rotate(360deg);
   }
 
   to {
@@ -757,9 +757,9 @@ body {
   opacity: 1;
   transform: translateY(0);
   transition:
-    max-height 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 620ms ease,
-    transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease-out,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .settings-field {
@@ -852,7 +852,7 @@ body {
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):hover::after,
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):focus-visible::after {
-  animation: metal-grind-sweep 420ms steps(6, end) both;
+  animation: metal-grind-sweep 240ms ease-out both;
 }
 
 .showcase[data-quality="low"] :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link)::after {
@@ -861,108 +861,72 @@ body {
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):hover,
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):focus-visible {
-  animation: metal-impact 420ms steps(6, end) both;
+  animation: metal-impact 220ms ease-out both;
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):active {
-  animation: metal-press 140ms steps(3, end) both;
+  animation: metal-press 110ms ease-out both;
 }
 
 .showcase :is(.category-card, .enemy-card, .animation-card, .begin-button, .settings-menu summary, .settings-field select, .wiki-link):active::after {
-  animation: metal-crush 140ms steps(3, end) both;
+  animation: metal-crush 110ms ease-out both;
 }
 
 @keyframes metal-grind-sweep {
   0% {
-    clip-path: polygon(0 0, 0 0, 0 36%, 0 60%, 0 100%, 0 100%, 0 64%, 0 40%);
+    transform: translate3d(-10%, 0, 0);
     opacity: 0;
   }
 
   20% {
-    clip-path: polygon(0 0, 62% 0, 65% 38%, 100% 40%, 100% 64%, 61% 62%, 58% 100%, 0 100%);
     opacity: 1;
   }
 
-  56% {
-    clip-path: polygon(0 0, 100% 0, 100% 34%, 34% 38%, 31% 62%, 100% 66%, 100% 100%, 0 100%);
-    opacity: 0.82;
-  }
-
   100% {
-    clip-path: polygon(0 0, 100% 0, 100% 36%, 100% 60%, 100% 100%, 0 100%, 0 64%, 0 40%);
-    opacity: 0.48;
+    transform: translate3d(10%, 0, 0);
+    opacity: 0;
   }
 }
 
 @keyframes metal-impact {
   0% {
-    filter: contrast(1);
-    transform: translate(0, 0);
+    transform: translateY(0) scale(1);
   }
 
-  22% {
-    filter: contrast(1.55) brightness(0.78) saturate(0.58);
-    transform: translate(-2px, 2px) skewX(-0.8deg);
-    box-shadow:
-      inset 0 2px rgba(239, 241, 238, 0.5),
-      inset 0 -10px 15px rgba(0, 0, 0, 0.72),
-      0 0 0 2px var(--frame-warning),
-      0 5px 0 rgba(0, 0, 0, 0.65);
+  55% {
+    transform: translateY(-2px) scale(1.008);
   }
 
-  48% {
-    filter: contrast(1.6) brightness(1.22) saturate(0.62);
-    transform: translate(2px, -1px) skewX(0.6deg);
-    box-shadow:
-      inset 0 2px rgba(239, 241, 238, 0.58),
-      inset 0 -7px 12px rgba(0, 0, 0, 0.66),
-      0 0 0 2px var(--frame-warning),
-      0 3px 0 rgba(0, 0, 0, 0.6);
-  }
-
-  72% {
-    transform: translate(-1px, 1px);
-  }
-
-  100% {
-    filter: contrast(1.32) brightness(1.08) saturate(0.68);
-    transform: translate(0, -2px);
+  to {
+    transform: translateY(-1px) scale(1.003);
   }
 }
 
 @keyframes metal-press {
-  from {
-    filter: brightness(1);
-    transform: translateY(-2px);
-  }
+  from { transform: translateY(-1px) scale(1); }
 
   45% {
-    filter: brightness(0.68) contrast(1.5);
-    transform: translateY(3px) scale(0.985);
-    box-shadow:
-      inset 0 7px 14px rgba(0, 0, 0, 0.78),
-      inset 0 1px rgba(239, 241, 238, 0.34);
+    transform: translateY(2px) scale(0.99);
   }
 
   to {
-    filter: brightness(0.78) contrast(1.28);
-    transform: translateY(2px) scale(0.99);
+    transform: translateY(1px) scale(0.995);
   }
 }
 
 @keyframes metal-crush {
   0% {
-    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    transform: scaleY(0.12);
     opacity: 0;
   }
 
   32% {
-    clip-path: polygon(0 46%, 42% 42%, 44% 0, 58% 0, 62% 43%, 100% 47%, 100% 59%, 0 60%);
+    transform: scaleY(1);
     opacity: 1;
   }
 
   to {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 60%, 0 59%, 0 47%, 0 46%);
+    transform: scaleY(0.96);
     opacity: 0;
   }
 }
@@ -983,29 +947,18 @@ body {
 }
 
 .category-screen.is-entering {
-  animation: steel-panel-lock 950ms steps(9, end) both;
+  animation: steel-panel-lock 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes steel-panel-lock {
   from {
-    filter: contrast(1.6) brightness(0.55);
     opacity: 0;
-    clip-path: polygon(49% 49%, 51% 49%, 51% 50%, 51% 51%, 49% 51%, 49% 50%);
-    transform: translateY(8px);
-  }
-
-  36% {
-    filter: contrast(1.35) brightness(0.82);
-    opacity: 0.82;
-    clip-path: polygon(0 0, 42% 0, 45% 46%, 100% 48%, 100% 100%, 0 100%);
-    transform: translateY(2px);
+    transform: translateY(10px) scale(0.99);
   }
 
   to {
-    filter: contrast(1) brightness(1);
     opacity: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 48%, 100% 100%, 0 100%, 0 48%);
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -1035,10 +988,10 @@ body {
   cursor: pointer;
   font: inherit;
   transition:
-    border-color 140ms steps(2, end),
-    background-color 140ms steps(2, end),
-    box-shadow 140ms steps(2, end),
-    transform 100ms steps(2, end);
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    box-shadow 180ms ease-out,
+    transform 160ms ease-out;
 }
 
 .category-card:hover {
@@ -1158,10 +1111,10 @@ body {
   font: inherit;
   text-align: center;
   transition:
-    border-color 140ms steps(2, end),
-    box-shadow 140ms steps(2, end),
-    background-color 140ms steps(2, end),
-    transform 100ms steps(2, end);
+    border-color 180ms ease-out,
+    box-shadow 180ms ease-out,
+    background-color 180ms ease-out,
+    transform 160ms ease-out;
 }
 
 .enemy-card:hover,
@@ -1206,7 +1159,7 @@ body {
   gap: 28px;
   color: #dce2eb;
   line-height: 1.65;
-  animation: steel-panel-lock 520ms steps(7, end) both;
+  animation: steel-panel-lock 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .enemy-detail h2,
@@ -1425,7 +1378,7 @@ body {
   opacity: 1;
   object-fit: contain;
   object-position: center;
-  transition: opacity 350ms ease;
+  transition: opacity 180ms ease-out;
 }
 
 .media-modal video:fullscreen,
@@ -1509,40 +1462,36 @@ body {
 }
 
 .showcase.is-reconstructing .reconstruct-effect {
-  animation: steel-frame-seat 1400ms steps(10, end) both;
+  animation: steel-frame-seat 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .showcase.is-reconstructing .reconstruct-effect::before {
-  animation: steel-plate-seat 1400ms steps(9, end) both;
+  animation: steel-plate-seat 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .showcase.is-reconstructing .reconstruct-effect::after {
-  animation: metal-grind-pass 1400ms steps(8, end) both;
+  animation: metal-grind-pass 520ms ease-out both;
 }
 
 @keyframes steel-frame-seat {
   0% {
     opacity: 0;
-    clip-path: polygon(49% 49%, 51% 49%, 51% 50%, 51% 51%, 51% 51%, 49% 51%, 49% 50%, 49% 49%);
-    filter: contrast(1.7) brightness(0.5);
+    transform: scale(0.98);
   }
 
   34% {
     opacity: 0.92;
-    clip-path: polygon(0 0, 38% 0, 42% 42%, 100% 44%, 100% 100%, 62% 100%, 58% 58%, 0 56%);
-    filter: contrast(1.4) brightness(0.74);
+    transform: scale(1);
   }
 
   68% {
     opacity: 0.76;
-    clip-path: polygon(0 0, 100% 0, 100% 42%, 100% 100%, 100% 100%, 0 100%, 0 58%, 0 0);
-    filter: contrast(1.2) brightness(0.92);
+    transform: scale(1.01);
   }
 
   100% {
     opacity: 0;
-    clip-path: polygon(0 0, 100% 0, 100% 42%, 100% 100%, 100% 100%, 0 100%, 0 58%, 0 0);
-    filter: contrast(1) brightness(1);
+    transform: scale(1.02);
   }
 }
 
@@ -1550,25 +1499,21 @@ body {
   0% {
     opacity: 0;
     transform: scale(0.94) translateY(8px);
-    clip-path: polygon(49% 49%, 51% 49%, 51% 50%, 51% 51%, 51% 51%, 49% 51%, 49% 50%, 49% 49%);
   }
 
   38% {
     opacity: 0.82;
     transform: scale(1) translateY(1px);
-    clip-path: polygon(0 0, 38% 0, 42% 42%, 100% 44%, 100% 100%, 62% 100%, 58% 58%, 0 56%);
   }
 
   70% {
     opacity: 0.64;
     transform: scale(1) translateY(-2px);
-    clip-path: polygon(0 0, 100% 0, 100% 42%, 100% 100%, 100% 100%, 0 100%, 0 58%, 0 0);
   }
 
   100% {
     opacity: 0;
     transform: scale(1.01) translateY(0);
-    clip-path: polygon(0 0, 100% 0, 100% 42%, 100% 100%, 100% 100%, 0 100%, 0 58%, 0 0);
   }
 }
 
@@ -1660,9 +1605,14 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .brand-panel,
+  .background-image,
   .category-card,
   .settings-menu summary,
-  .settings-gear {
+  .settings-gear,
+  .settings-controls,
+  .media-modal video,
+  .media-modal .media-image,
+  .analog-horror {
     transition-duration: 0.01ms;
   }
 
